@@ -12,4 +12,6 @@ import re
 
 
 def filter_datum(fields, redaction, message, separator):
-    return re.sub(r'({})=[^{}]+'.format('|'.join(fields), separator), r'\1=' + redaction, message)
+    return re.sub(r'({})=[^{}]+'.format(
+        '|'.join(fields), separator), r'\1=' + redaction, message
+    )
