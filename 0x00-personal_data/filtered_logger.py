@@ -12,14 +12,26 @@ import re
 import logging
 from typing import List
 
+PII_FIELDS = ["email", "phone", "ssn", "password", "ip"]
+
 
 def filter_datum(fields, redaction, message, separator):
     """1-main.py should use a regex to replace
     occurrences of certain field values.
-        """
+    """
     return re.sub(r'({})=[^{}]+'.format(
         '|'.join(fields), separator), r'\1=' + redaction, message
     )
+
+
+def get_logger() -> logging.Logger:
+    """1-main.py"""
+    logger = logging.getLogger("user_data")
+    logger.setLevel(logging.INFO)
+    stream_handler = logging.StreamHandler()
+    stream_handler.setFormatter(RedactingFormatter(PII_FIELDS))
+    logger.addHandler(stream_handler)
+    return logger
 
 
 class RedactingFormatter(logging.Formatter):
