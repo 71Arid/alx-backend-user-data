@@ -12,6 +12,9 @@ import re
 
 
 def filter_datum(fields, redaction, message, separator):
+    """1-main.py should use a regex to replace
+    occurrences of certain field values.
+    """
     return re.sub(r'({})=[^{}]+'.format(
         '|'.join(fields), separator), r'\1=' + redaction, message
     )
