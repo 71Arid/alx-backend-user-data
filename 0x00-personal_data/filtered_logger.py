@@ -12,7 +12,7 @@ import re
 import logging
 from typing import List
 
-PII_FIELDS = ["email", "phone", "ssn", "password", "ip"]
+PII_FIELDS = ("email", "phone", "ssn", "password", "name")
 
 
 def filter_datum(fields, redaction, message, separator):
@@ -27,6 +27,7 @@ def filter_datum(fields, redaction, message, separator):
 def get_logger() -> logging.Logger:
     """1-main.py"""
     logger = logging.getLogger("user_data")
+    logger.propagate = False
     logger.setLevel(logging.INFO)
     stream_handler = logging.StreamHandler()
     stream_handler.setFormatter(RedactingFormatter(PII_FIELDS))
