@@ -1,4 +1,4 @@
-#!/usr/bin/env pyhthon3
+#!/usr/bin/env pysthon3
 """
 a class to manage the API authentication.
 """
