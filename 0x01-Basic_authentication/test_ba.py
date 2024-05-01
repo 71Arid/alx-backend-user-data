@@ -1,3 +1,3 @@
-ste = "Hello"
-true = ste[1:]
-print(true)
+ste = "He:llo"
+one, two = ste.split(":")
+print((one, two))
