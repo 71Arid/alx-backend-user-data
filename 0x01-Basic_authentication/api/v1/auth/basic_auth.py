@@ -41,9 +41,9 @@ class BasicAuth(Auth):
         from the Base64 decoded value."""
         if decoded_base64_authorization_header is None or not type(
                 decoded_base64_authorization_header) == str:
-            return None
+            return (None, None)
         if ":" in decoded_base64_authorization_header:
             email, password = decoded_base64_authorization_header.split(":")
             return (email, password)
         else:
-            return None
+            return (None, None)
