@@ -19,7 +19,7 @@ class Auth():
             return True
         if path[last_index] != "/":
             path = path + "/"
-        if excluded_path in excluded_paths:
+        for excluded_path in excluded_paths:
             if fnmatch(path, excluded_path):
                 return False
         return True
