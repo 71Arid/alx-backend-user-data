@@ -1,3 +1,3 @@
-ste = "He:llo"
-one, two = ste.split(":")
+ste = "He:llo:yettti"
+one, two = ste.split(":", 1)
 print((one, two))
