@@ -19,6 +19,8 @@ class SessionDBAuth(SessionExpAuth):
     def create_session(self, user_id=None):
         """creates and stores new instance of
         UserSession and returns the Session ID"""
+        if user_id is None:
+            return None
         sess_id = super().create_session(user_id)
         kwargs = {
             "user_id": user_id,
