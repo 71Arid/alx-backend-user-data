@@ -31,13 +31,14 @@ if auth_type == "session_auth":
 def before_request():
     """.gitignore"""
     excluded_paths = [
-        '/api/v1/status/', '/api/v1/unauthorized/', '/api/v1/forbidden/'
+        '/api/v1/status/', '/api/v1/unauthorized/', '/api/v1/forbidden/',
+        '/api/v1/auth_session/login/'
     ]
     if auth is None:
         return
     if not auth.require_auth(request.path, excluded_paths):
         return
-    if not auth.authorization_header(request):
+    if not auth.authorization_header(request) and not auth.session_cookie(request):
         abort(401)
     if not auth.current_user(request):
         abort(403)
