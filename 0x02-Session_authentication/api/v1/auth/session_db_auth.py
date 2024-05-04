@@ -51,7 +51,7 @@ class SessionDBAuth(SessionExpAuth):
         the Session ID from the request cookie"""
         sess_id = self.session_cookie(request)
         try:
-            sessions = UserSession.search({'session_id': session_id})
+            sessions = UserSession.search({'session_id': sess_id})
         except Exception:
             return False
         if len(sessions) <= 0:
