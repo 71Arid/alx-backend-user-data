@@ -38,3 +38,18 @@ def login():
     cookie_name = getenv("SESSION_NAME")
     response.set_cookie(cookie_name, sess_id)
     return response
+
+@app_views.route('/auth_session/logout', methods=['DELETE'], strict_slashes=False)
+def logout():
+    """
+    Route:
+        - DELETE /api/v1/auth_session/logout
+    Return value:
+        - user login info if exists
+    """
+    from api.v1.app import auth
+    del_status = auth.destroy_session(request)
+    if del_status == False:
+        abort(404)
+    else:
+        return jsonify({}), 200
