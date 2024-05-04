@@ -24,7 +24,7 @@ class SessionDBAuth(SessionExpAuth):
             "user_id": user_id,
             "session_id": sess_id
         }
-        session = UserSession(*kwargs)
+        session = UserSession(**kwargs)
         session.save()
         return sess_id
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 new authentication system, based on
-Session ID stored in database 
+Session ID stored in database
 """
 from models.base import Base
 
