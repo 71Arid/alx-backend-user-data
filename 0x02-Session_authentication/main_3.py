@@ -2,9 +2,9 @@
 """ Cookie server
 """
 from flask import Flask, request
-from api.v1.auth.session_auth import SessionAuth
+from api.v1.auth.auth import Auth
 
-auth = SessionAuth()
+auth = Auth()
 
 app = Flask(__name__)
 

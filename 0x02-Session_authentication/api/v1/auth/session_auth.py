@@ -7,7 +7,6 @@ a new authentication mechanism:
 """
 from .auth import Auth
 from uuid import uuid4
-from os import getenv
 
 
 class SessionAuth(Auth):
@@ -30,11 +29,3 @@ class SessionAuth(Auth):
             return None
         user_id = self.user_id_by_session_id.get(session_id)
         return user_id
-
-    def session_cookie(self, request=None):
-        """returns a cookie value from a request"""
-        if request is None:
-            return None
-        cookie = getenv("SESSION_NAME")
-        response = request.cookies.get(cookie)
-        return response

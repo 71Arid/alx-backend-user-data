@@ -5,6 +5,7 @@ a class to manage the API authentication.
 from flask import request
 from typing import List, TypeVar
 from fnmatch import fnmatch
+from os import getenv
 
 
 class Auth():
@@ -36,3 +37,11 @@ class Auth():
     def current_user(self, request=None) -> TypeVar('User'):
         """current user selector function"""
         return None
+
+    def session_cookie(self, request=None):
+        """returns a cookie value from a request"""
+        if request is None:
+            return None
+        cookie = getenv("SESSION_NAME")
+        response = request.cookies.get(cookie)
+        return response
