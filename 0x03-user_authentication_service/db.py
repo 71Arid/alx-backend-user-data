@@ -51,3 +51,15 @@ class DB:
         except InvalidRequestError:
             self._session.rollback()
             raise
+
+    def update_user(self, user_id: int, **kwargs) -> None:
+        """update a specific users details"""
+        user = self.find_user_by(id=user_id)
+        if user is None:
+            return
+        for key, value in kwargs.items():
+            if hasattr(User, key):
+                setattr(user, key, value)
+            else:
+                raise ValueError()
+        self._session.commit()
